@@ -23,6 +23,14 @@ public class Lec03MonoSubscribe {
         );
 
 
+//        subscribe() has three parameters
+
+//       when publisher invokes
+//        onNext call it takes Consumer<T>
+//        onError call it takes Consumer<Throwable>
+//        onComplete it takes Runnable
+
+
     }
 
 }

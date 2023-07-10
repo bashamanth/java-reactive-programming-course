@@ -6,26 +6,27 @@ import reactor.core.scheduler.Schedulers;
 
 public class Lec06SupplierRefactoring {
 
+//    building the pipeline vs executing the pipeline.
+//    with the first getName() call it, doesnt execute the pipeline. just builds it so thread sleep will not execute.
+
     public static void main(String[] args) {
-
         getName();
-        String name = getName()
-                .subscribeOn(Schedulers.boundedElastic())
-                .block();
-        System.out.println(name);
+        getName().subscribeOn(Schedulers.boundedElastic()).subscribe(t -> System.out.println(t));
         getName();
 
-        Util.sleepSeconds(4);
+//        you can use block() method on mono
+
+        Util.sleepSeconds(8);
     }
 
-    private static Mono<String> getName(){
-        System.out.println("entered getName method");
+    private static Mono<String> getName() {
+        System.out.println("Entered getName method");
         return Mono.fromSupplier(() -> {
-            System.out.println("Generating name..");
+            System.out.println("Generating Name...");
             Util.sleepSeconds(3);
             return Util.faker().name().fullName();
         }).map(String::toUpperCase);
-    }
 
+    }
 
 }

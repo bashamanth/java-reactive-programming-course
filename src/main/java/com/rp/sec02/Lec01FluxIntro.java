@@ -9,7 +9,7 @@ public class Lec01FluxIntro {
 
         Flux<Object> flux = Flux.just(1,2, 3, "a", Util.faker().name().fullName());
 
-        flux.subscribe(
+        flux.log().subscribe(
                 Util.onNext(),
                 Util.onError(),
                 Util.onComplete());

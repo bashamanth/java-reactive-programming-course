@@ -9,6 +9,8 @@ public class Lec07MonoFromFuture {
 
     public static void main(String[] args) {
 
+
+//        subscribeOn() is not required as Completble future uses ForkJoinPool
         Mono.fromFuture(getName())
                 .subscribe(Util.onNext());
 

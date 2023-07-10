@@ -16,6 +16,9 @@ public class Lec04FluxFromStream {
        // stream.forEach(System.out::println); // closed
        // stream.forEach(System.out::println);
 
+//        in the below statement list.stream() gives always new Object,
+//        if you replace with stream it shares the same object and second subscriber will not get any events.
+
         Flux<Integer> integerFlux = Flux.fromStream(() -> list.stream());
 
         integerFlux
